@@ -28,6 +28,7 @@ router.get("/previous", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequest("latest");
 
   const launchResponse = formatSingleResponse(latestResponse);
+  response.header("Access-Control-Allow-Origin", "*");
   return response.send(launchResponse);
 });
 
@@ -35,6 +36,7 @@ router.get("/next", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequest("next");
 
   const launchResponse = formatSingleResponse(latestResponse);
+  response.header("Access-Control-Allow-Origin", "*");
   return response.send(launchResponse);
 });
 
@@ -42,6 +44,7 @@ router.get("/past", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequestList("past");
 
   const launchResponse = formatResponse(latestResponse);
+  response.header("Access-Control-Allow-Origin", "*");
   return response.send(launchResponse);
 });
 
@@ -49,6 +52,7 @@ router.get("/upcoming", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequestList("upcoming");
 
   const launchResponse = formatResponse(latestResponse);
+  response.header("Access-Control-Allow-Origin", "*");
   return response.send(launchResponse);
 });
 
