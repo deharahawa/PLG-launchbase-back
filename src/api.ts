@@ -2,7 +2,9 @@ import axios from "axios";
 import dotenv from "dotenv";
 import { LaunchResponse } from "./types";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 export const api = axios.create({
   baseURL: process.env.APP_BASE_URL,

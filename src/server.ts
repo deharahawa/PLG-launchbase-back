@@ -1,5 +1,8 @@
 import { app } from "./app";
 import dotenv from "dotenv";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+
 app.listen(process.env.PORT || 3333);
