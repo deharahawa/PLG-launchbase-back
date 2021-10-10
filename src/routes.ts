@@ -24,7 +24,9 @@ function formatResponse(data: LaunchResponse[]): Launch[] {
   }));
 }
 
-router.get("/api/previous", async (request, response) => {
+const baseServerUrl = process.env.APP_SERVER_URL;
+
+router.get(baseServerUrl + "/api/previous", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequest("latest");
 
   const launchResponse = formatSingleResponse(latestResponse);
@@ -32,7 +34,7 @@ router.get("/api/previous", async (request, response) => {
   return response.send(launchResponse);
 });
 
-router.get("/api/next", async (request, response) => {
+router.get(baseServerUrl + "/api/next", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequest("next");
 
   const launchResponse = formatSingleResponse(latestResponse);
@@ -40,7 +42,7 @@ router.get("/api/next", async (request, response) => {
   return response.send(launchResponse);
 });
 
-router.get("/api/past", async (request, response) => {
+router.get(baseServerUrl + "/api/past", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequestList("past");
 
   const launchResponse = formatResponse(latestResponse);
@@ -48,7 +50,7 @@ router.get("/api/past", async (request, response) => {
   return response.send(launchResponse);
 });
 
-router.get("/api/upcoming", async (request, response) => {
+router.get(baseServerUrl + "/api/upcoming", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequestList("upcoming");
 
   const launchResponse = formatResponse(latestResponse);
