@@ -19,12 +19,15 @@ httpProxy.createProxyServer({
   xfwd: true,
 });
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
-}
-
 app.use(express.json());
 app.use(router);
 app.use(cors(corsOptions));
+
+app.use(express.static(path.join(__dirname, "client", "build")));
+if (process.env.NODE_ENV === "production") {
+  app.get(/^((?!(api)).)*$/, (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  });
+}
 
 export { app };
