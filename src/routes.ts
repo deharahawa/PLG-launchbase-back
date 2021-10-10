@@ -24,7 +24,7 @@ function formatResponse(data: LaunchResponse[]): Launch[] {
   }));
 }
 
-router.get("/previous", async (request, response) => {
+router.get("/api/previous", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequest("latest");
 
   const launchResponse = formatSingleResponse(latestResponse);
@@ -32,7 +32,7 @@ router.get("/previous", async (request, response) => {
   return response.send(launchResponse);
 });
 
-router.get("/next", async (request, response) => {
+router.get("/api/next", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequest("next");
 
   const launchResponse = formatSingleResponse(latestResponse);
@@ -40,7 +40,7 @@ router.get("/next", async (request, response) => {
   return response.send(launchResponse);
 });
 
-router.get("/past", async (request, response) => {
+router.get("/api/past", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequestList("past");
 
   const launchResponse = formatResponse(latestResponse);
@@ -48,7 +48,7 @@ router.get("/past", async (request, response) => {
   return response.send(launchResponse);
 });
 
-router.get("/upcoming", async (request, response) => {
+router.get("/api/upcoming", async (request, response) => {
   const { data: latestResponse } = await spaceXAPIRequestList("upcoming");
 
   const launchResponse = formatResponse(latestResponse);
